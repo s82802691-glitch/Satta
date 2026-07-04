@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="USz9TnR0qYcFFHZdesKrAYKXBZHBXSiloTjuvVVJkiw">
+
+<title>ONLINE KHAIWAL | SUPER FAST RESULT</title>
+
+<meta name="description" content="Online Khaiwal Super Fast Result | Gold Star | Royal Star | Delhi Super Bazar">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#eef4ff;
+}
+
+.top{
+background:#1565C0;
+color:#fff;
+padding:18px;
+text-align:center;
+border-radius:0 0 20px 20px;
+box-shadow:0 3px 10px rgba(0,0,0,.2);
+}
+
+.top h1{
+font-size:28px;
+color:#fff;
+margin-bottom:10px;
+letter-spacing:1px;
+}
+
+.market{
+font-size:15px;
+padding:3px 0;
+font-weight:bold;
+}
+
+.phone{
+font-size:30px;
+font-weight:bold;
+color:#FFEB3B;
+margin:12px 0;
+}
+
+.btn{
+display:inline-block;
+padding:10px 18px;
+margin:5px;
+border-radius:25px;
+text-decoration:none;
+font-weight:bold;
+font-size:14px;
+color:#fff;
+transition:.3s;
+}
+
+.whatsapp{
+background:#25D366;
+}
+
+.call{
+background:#1976D2;
+}
+
+.live{
+background:linear-gradient(90deg,#1565C0,#42A5F5);
+color:#fff;
+font-size:18px;
+font-weight:bold;
+text-align:center;
+padding:10px;
+margin:10px;
+border-radius:10px;
+}
+
+#result{
+max-width:750px;
+margin:auto;
+}
+
+.box{
+background:#fff;
+margin:10px;
+padding:12px;
+border-radius:12px;
+box-shadow:0 2px 8px rgba(0,0,0,.15);
+overflow:hidden;
+}
+
+.status{
+display:inline-block;
+padding:5px 10px;
+font-size:12px;
+font-weight:bold;
+border-radius:6px;
+color:#fff;
+background:#1565C0;
+}
+
+.result{
+float:right;
+text-align:right;
+}
+
+.name{
+font-size:18px;
+font-weight:bold;
+margin-top:8px;
+color:#1565C0;
+}
+
+.time{
+font-size:13px;
+color:#666;
+margin-top:2px;
+}
+
+.chart a{
+color:#1565C0;
+font-size:13px;
+font-weight:bold;
+text-decoration:none;
+}
+
+.article{
+background:#fff;
+margin:12px;
+padding:15px;
+border-radius:12px;
+box-shadow:0 2px 8px rgba(0,0,0,.12);
+}
+
+.article h2{
+color:#1565C0;
+margin-bottom:8px;
+}
+
+.article p{
+font-size:15px;
+line-height:24px;
+}
+
+</style>
+
+  </head>
+  <body>
+
+<div class="top">
+
+<h1>ONLINE KHAIWAL</h1>
+
+<div id="topMarkets"></div>
+
+<p style="margin-top:10px;">🎯 जोड़ी रेट <b>10.....950</b></p>
+
+<p style="margin-top:6px;">⚡ सबसे फास्ट पेमेंट की सुविधा ⚡</p>
+
+<div class="phone">
+📞 9649269875
+</div>
+
+<a class="btn whatsapp" href="https://wa.me/919649269875">
+💬 WhatsApp
+</a>
+
+<a class="btn call" href="tel:9649269875">
+📞 Call Now
+</a>
+
+</div>
+
+<div class="live">
+🔵 SATTA KING SUPER FAST RESULTS 🔵
+</div>
+
+<div id="result"></div>
+
+<script>
+
+const sheetURL="https://docs.google.com/spreadsheets/d/e/2PACX-1vSdS3LZ5SU88GCEkUSKW2y_zdRQ2rXQCq03xfsCmMgby_V6bI09CVQzLnUg-7TfSMALZoMDzc-ioEti/pub?output=csv";
+
+fetch(sheetURL)
+.then(res=>res.text())
+.then(data=>{
+
+let rows=data.trim().split("\n");
+
+let header=rows[0].split(",");
+
+let topHTML="";
+
+let resultHTML="";
+  for(let i=1;i<rows.length;i++){
+
+let col=rows[i].split(",");
+
+topHTML+=`
+<div class="market">
+🔥 ${col[1]} ........ ${col[2]}
+</div>
+`;
+
+let badgeColor=col[0].trim().toUpperCase()=="LIVE"
+?"#1565C0":"#444";
+
+resultHTML+=`
+
+<div class="box">
+
+<div class="status" style="background:${badgeColor}">
+${col[0]}
+</div>
+
+<div class="result">
+
+<div style="
+font-size:12px;
+color:#1565C0;
+font-weight:bold;
+margin-bottom:5px;
+">
+
+${header[3]} &nbsp;&nbsp; ${header[4]}
+
+</div>
+
+<div style="
+font-size:34px;
+font-weight:bold;
+color:#111;
+">
+
+${col[3]}
+&nbsp;&nbsp;
+${col[4]}
+
+</div>
+
+</div>
+
+<div class="name">
+${col[1]}
+</div>
+
+<div class="time">
+🕒 ${col[2]}
+</div>
+
+<div class="chart">
+<a href="#">
+📊 Record Chart
+</a>
+</div>
+
+<div style="clear:both;"></div>
+
+</div>
+
+`;
+
+}
+
+document.getElementById("topMarkets").innerHTML=topHTML;
+
+document.getElementById("result").innerHTML=resultHTML;
+
+});
+
+</script>
+<div class="article">
+
+<h2>🌟 Royal Star Result Today</h2>
+
+<p>
+Royal Star का रिजल्ट प्रतिदिन अपडेट किया जाता है। यहां आपको Live Result, Old Record Chart और सबसे तेज अपडेट मिलते हैं।
+</p>
+
+</div>
+
+<div class="article">
+
+<h2>⭐ Gold Star Result Today</h2>
+
+<p>
+Gold Star मार्केट का रिजल्ट रोज़ अपडेट किया जाता है। यहां पुराने रिकॉर्ड और लेटेस्ट रिजल्ट एक ही जगह उपलब्ध हैं।
+</p>
+
+</div>
+
+<div class="article">
+
+<h2>🔵 Delhi Super Bazar Result Today</h2>
+
+<p>
+Delhi Super Bazar के Live Result, Old Record Chart और Daily Update सबसे पहले यहां देखें।
+</p>
+
+</div>
+
+<div class="article">
+
+<h2>⚡ Online Khaiwal Super Fast Result</h2>
+
+<p>
+यह वेबसाइट Google Sheet से सीधे डेटा पढ़ती है। जैसे ही Sheet में बदलाव होगा, कुछ समय बाद वेबसाइट पर भी अपडेट दिखाई देगा।
+</p>
+
+</div>
+
+<footer style="background:#1565C0;color:#fff;text-align:center;padding:18px;margin-top:20px;">
+
+<h3>ONLINE KHAIWAL</h3>
+
+<p>© 2026 All Rights Reserved</p>
+
+<p>Fast Result • Fast Payment • Trusted Service</p>
+
+</footer>
+
+</body>
+</html>

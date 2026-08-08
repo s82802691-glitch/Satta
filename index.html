@@ -3,156 +3,302 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
 <title>ONLINE RESULTS | Premium Live Dashboard</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,"Noto Sans Devanagari",sans-serif}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial,"Noto Sans Devanagari",sans-serif;
+}
+
 body{
   background:linear-gradient(180deg,#f4faff 0%,#f8fbfd 55%,#eef7fc 100%);
   color:#173247;
 }
+
 .top{
-  padding:24px 14px 28px;text-align:center;
-  background:linear-gradient(145deg,#d8f0ff 0%,#fff 62%,#eaf8ff 100%);
-  border-bottom:1px solid #cce7f5;
-  box-shadow:0 8px 30px rgba(35,117,160,.13);
+  padding:24px 14px 28px;
+  text-align:center;
+  background:linear-gradient(145deg,#d8f0ff 0%,#fff 62%,#e8f6ff 100%);
+  border-bottom:1px solid #c8e5f5;
+  box-shadow:0 5px 22px rgba(30,120,170,.13);
 }
+
 .logo{
-  width:78px;height:78px;object-fit:cover;border-radius:50%;
-  border:4px solid #fff;box-shadow:0 8px 25px rgba(28,117,164,.22)
+  width:76px;
+  height:76px;
+  object-fit:cover;
+  border-radius:50%;
+  border:3px solid #fff;
+  box-shadow:0 5px 18px rgba(0,100,160,.22);
 }
-h1{margin:12px 0 10px;color:#115b83;font-size:30px;letter-spacing:.6px}
+
+.top h1{
+  margin:11px 0;
+  color:#14577e;
+  font-size:29px;
+  letter-spacing:.6px;
+}
+
 .clock{
-  display:inline-block;padding:9px 20px;border-radius:30px;
-  background:rgba(255,255,255,.9);color:#24536b;font-weight:800;
-  box-shadow:0 5px 18px rgba(30,110,150,.12)
+  display:inline-block;
+  padding:9px 20px;
+  border-radius:28px;
+  background:#fff;
+  color:#174b69;
+  font-size:18px;
+  font-weight:bold;
+  box-shadow:0 4px 14px rgba(0,100,160,.13);
 }
-.livebar{
-  margin:14px 12px;padding:14px;text-align:center;border-radius:16px;
-  background:linear-gradient(135deg,#e0f5ff,#f4fbff);
-  color:#17648c;font-weight:900;font-size:18px;
-  box-shadow:0 5px 18px rgba(50,140,190,.09)
+
+.live{
+  margin:15px auto;
+  max-width:1100px;
+  padding:14px;
+  text-align:center;
+  border-radius:14px;
+  background:linear-gradient(90deg,#e5f5ff,#f5fbff);
+  color:#17658e;
+  font-size:19px;
+  font-weight:bold;
+  box-shadow:0 3px 12px rgba(0,100,160,.08);
 }
+
 .ticker{
-  margin:12px;overflow:hidden;white-space:nowrap;background:#fff;
-  border:1px solid #d8ebf5;border-radius:15px;
-  box-shadow:0 5px 16px rgba(40,100,130,.08)
-}
-.ticker span{
-  display:inline-block;padding:13px 0;padding-left:100%;
-  color:#28647e;font-weight:800;animation:ticker 16s linear infinite
-}
-@keyframes ticker{to{transform:translateX(-100%)}}
-
-.notice{
-  display:none;margin:12px;padding:14px;text-align:center;border-radius:16px;
-  background:#fff;color:#17648c;font-weight:900;
-  border:1px solid #cce9f7;box-shadow:0 0 24px rgba(45,170,230,.28)
+  max-width:1100px;
+  margin:12px auto;
+  overflow:hidden;
+  white-space:nowrap;
+  background:#fff;
+  border:1px solid #d6ebf7;
+  border-radius:13px;
+  box-shadow:0 3px 12px rgba(0,100,160,.08);
 }
 
-.panel{
-  margin:12px;overflow:hidden;border-radius:22px;background:#fff;
-  border:1px solid #deedf4;box-shadow:0 10px 32px rgba(31,91,123,.11)
-}
-.panel-title{
-  padding:18px;text-align:center;font-size:22px;font-weight:900;
-  color:#175e83;background:linear-gradient(135deg,#d9f2ff,#f3fbff);
-  border-bottom:1px solid #d7ebf4
-}
-.table-wrap{overflow-x:auto}
-table{width:100%;border-collapse:separate;border-spacing:0;min-width:650px}
-thead th{
-  padding:14px 10px;background:#edf8fd;color:#24647f;
-  font-size:14px;border-bottom:2px solid #d5ebf5;
-  white-space:nowrap
-}
-tbody td{
-  padding:14px 10px;text-align:center;font-size:15px;font-weight:800;
-  border-bottom:1px solid #edf2f5;background:#fff
-}
-tbody tr:nth-child(even) td{background:#fbfdff}
-.name-cell{text-align:left!important;min-width:180px}
-.name-line{display:flex;align-items:center;gap:9px}
-.row-logo{
-  width:38px;height:38px;border-radius:50%;object-fit:cover;
-  border:2px solid #bfe3f4;box-shadow:0 3px 9px rgba(20,120,165,.12)
-}
-.row-name{color:#174b65;font-weight:900}
-.row-time{font-size:11px;color:#7b8992;margin-top:4px;font-weight:600}
-.status{
-  display:inline-block;min-width:66px;padding:7px 8px;border-radius:9px;
-  color:#fff;font-size:11px;font-weight:900
-}
-.status-live{background:#16a34a;box-shadow:0 4px 10px rgba(22,163,74,.18)}
-.status-wait{background:#15191c}
-.value{font-size:19px;color:#182f40}
-.updated td{
-  background:linear-gradient(90deg,#e3f8ff,#f9fdff,#e3f8ff)!important;
-  animation:rowGlow 1s infinite alternate
-}
-@keyframes rowGlow{
-  from{box-shadow:inset 0 0 4px rgba(35,169,224,.12)}
-  to{box-shadow:inset 0 0 28px rgba(35,169,224,.48)}
-}
-.updated td:first-child{border-left:4px solid #28a9df}
-.recent{
-  display:block;margin-top:4px;font-size:10px;color:#1180b1;font-weight:900
-}
-.info{
-  margin:12px;padding:18px;border-radius:20px;background:#fff;
-  border:1px solid #e0edf3;box-shadow:0 6px 20px rgba(30,90,120,.07)
-}
-.info h2{font-size:20px;color:#21678c;margin-bottom:8px}
-.info p{line-height:25px;color:#53636e}
-footer{
-  margin-top:20px;padding:25px 15px;text-align:center;
-  background:#e3f5ff;color:#31566b;border-top:1px solid #cce7f5
-}
-.footer-logo{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid #fff}
-@media(max-width:600px){
-  h1{font-size:25px}
-  .panel-title{font-size:20px}
-  thead th{font-size:12px;padding:12px 7px}
-  tbody td{font-size:13px;padding:11px 7px}
+.ticker-text{
+  display:inline-block;
+  padding:12px 0;
+  padding-left:100%;
+  color:#28627f;
+  font-size:16px;
+  font-weight:bold;
+  animation:scrollText 14s linear infinite;
 }
 
-/* Readability upgrade: larger mobile/tablet text */
+@keyframes scrollText{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-100%)}
+}
+
+.update{
+  display:none;
+  max-width:1100px;
+  margin:13px auto;
+  padding:14px;
+  text-align:center;
+  border-radius:14px;
+  background:#fff;
+  color:#17658e;
+  font-size:16px;
+  font-weight:bold;
+  box-shadow:0 0 20px rgba(45,170,230,.40);
+  animation:updateGlow 1s infinite alternate;
+}
+
+@keyframes updateGlow{
+  from{
+    box-shadow:0 0 8px rgba(45,170,230,.25);
+  }
+  to{
+    box-shadow:0 0 28px rgba(45,170,230,.65);
+  }
+}
+
 .table-box{
   max-width:1100px;
-  margin-left:auto;
-  margin-right:auto;
+  margin:15px auto;
+  background:#fff;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 6px 24px rgba(30,90,130,.12);
 }
 
 .table-title{
-  font-size:24px;
   padding:17px 12px;
+  text-align:center;
+  background:linear-gradient(135deg,#d9f1ff,#eefaff);
+  color:#175d82;
+  font-size:24px;
+  font-weight:bold;
+  border-bottom:1px solid #d4eaf6;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
 }
 
 th{
-  font-size:15px;
   padding:14px 8px;
+  background:#edf8fe;
+  color:#28627f;
+  font-size:15px;
+  font-weight:bold;
+  border-bottom:2px solid #d5eaf5;
 }
 
 td{
-  font-size:16px;
   padding:15px 8px;
+  text-align:center;
+  border-bottom:1px solid #e7eef2;
+  font-size:16px;
+  font-weight:bold;
+}
+
+tr:nth-child(even){
+  background:#fcfdff;
+}
+
+.updated-row{
+  background:#e5f7ff !important;
+  animation:recentGlow 1s infinite alternate;
+}
+
+@keyframes recentGlow{
+  from{
+    box-shadow:inset 0 0 3px rgba(50,170,230,.15);
+  }
+  to{
+    box-shadow:inset 0 0 25px rgba(50,170,230,.50);
+  }
 }
 
 .status{
+  display:inline-block;
   min-width:78px;
   padding:7px 10px;
+  border-radius:8px;
+  color:#fff;
   font-size:13px;
+  font-weight:bold;
+}
+
+.live-status{
+  background:#16a34a;
+  box-shadow:0 0 8px rgba(22,163,74,.25);
+}
+
+.wait-status{
+  background:#171717;
+}
+
+.name{
+  text-align:left;
+}
+
+.row-logo{
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  object-fit:cover;
+  vertical-align:middle;
+  margin-right:6px;
+  border:2px solid #b9e3f7;
 }
 
 .name-text{
+  display:inline-block;
+  vertical-align:middle;
   font-size:16px;
 }
 
 .time{
+  margin-top:4px;
+  color:#77838c;
   font-size:13px;
+  font-weight:normal;
+}
+
+.article{
+  max-width:1100px;
+  margin:14px auto;
+  padding:19px;
+  background:#fff;
+  border-radius:16px;
+  border:1px solid #dfebf2;
+  box-shadow:0 4px 14px rgba(30,90,130,.08);
+}
+
+.article h2{
+  color:#21678c;
+  margin-bottom:9px;
+  font-size:21px;
+}
+
+.article p{
+  line-height:26px;
+  color:#4e5d68;
+  font-size:15px;
+}
+
+footer{
+  margin-top:24px;
+  padding:26px 15px;
+  text-align:center;
+  color:#31566b;
+  background:#e4f5ff;
+  border-top:1px solid #cfe8f8;
+}
+
+.footer-logo{
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  border:2px solid #fff;
+  object-fit:cover;
 }
 
 @media(max-width:600px){
+
+  .top{
+    padding:20px 10px 23px;
+  }
+
+  .logo{
+    width:68px;
+    height:68px;
+  }
+
+  .top h1{
+    font-size:25px;
+  }
+
+  .clock{
+    font-size:16px;
+    padding:8px 16px;
+  }
+
+  .live{
+    margin:12px 8px;
+    font-size:16px;
+  }
+
+  .ticker{
+    margin:10px 8px;
+  }
+
+  .ticker-text{
+    font-size:14px;
+  }
+
+  .table-box{
+    margin:12px 6px;
+    border-radius:15px;
+  }
+
   .table-title{
     font-size:22px;
   }
@@ -177,6 +323,11 @@ td{
     min-width:145px;
   }
 
+  .row-logo{
+    width:30px;
+    height:30px;
+  }
+
   .name-text{
     font-size:14px;
   }
@@ -184,243 +335,622 @@ td{
   .time{
     font-size:12px;
   }
-}
 
+  .article{
+    margin:12px 8px;
+  }
+}
 </style>
 </head>
 
 <body>
 
-<header class="top">
-  <img src="logo.png" class="logo" onerror="this.style.visibility='hidden'">
-  <h1>ONLINE RESULTS</h1>
-  <div class="clock" id="clock">🕒 00:00:00</div>
-</header>
+<div class="top">
 
-<div class="livebar">🔵 LIVE • FAST • LATEST UPDATES</div>
+  <img src="logo.png" class="logo">
+
+  <h1>ONLINE RESULTS</h1>
+
+  <div class="clock" id="clock">
+    🕒 00:00:00
+  </div>
+
+</div>
+
+<div class="live">
+  🔵 LIVE • FAST • LATEST UPDATES
+</div>
 
 <div class="ticker">
-  <span>📢 ONLINE RESULTS • नवीनतम जानकारी • DAILY UPDATES • LIVE INFORMATION • ONLINE RESULTS</span>
-</div>
-
-<div class="notice" id="notice">
-  ✨ नई जानकारी अपडेट हुई है ✨
-  <br><small id="noticeTimer"></small>
-</div>
-
-<section class="panel">
-  <div class="panel-title">📊 आज का LIVE DATA</div>
-
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>स्थिति</th>
-          <th>नाम / समय</th>
-          <th>कल क्या आया</th>
-          <th>आज क्या आया</th>
-        </tr>
-      </thead>
-      <tbody id="dataBody">
-        <tr><td colspan="4">डेटा लोड हो रहा है…</td></tr>
-      </tbody>
-    </table>
+  <div class="ticker-text">
+    📢 ONLINE RESULTS • LATEST INFORMATION • DAILY UPDATES • ONLINE RESULTS
   </div>
-</section>
-
-<div class="info">
-  <h2>🌿 दैनिक अपडेट</h2>
-  <p>यहां latest information और daily updates एक ही जगह पर उपलब्ध हैं। डेटा नियमित रूप से अपडेट किया जाता है।</p>
 </div>
 
-<div class="info">
-  <h2>⭐ नवीनतम जानकारी</h2>
-  <p>नई जानकारी अपडेट होने पर संबंधित पूरी row को हल्के नीले premium glow के साथ highlight किया जाएगा।</p>
+<div class="update" id="updateBox">
+  ✨ नई जानकारी अपडेट हुई ✨
+  <br>
+  <small id="updateTimer"></small>
 </div>
 
-<div class="info">
+<div class="table-box">
+
+  <div class="table-title">
+    📊 LIVE DATA
+  </div>
+
+  <table>
+
+    <thead>
+      <tr>
+        <th>स्थिति</th>
+        <th>नाम / समय</th>
+        <th>कल क्या आया</th>
+        <th>आज क्या आया</th>
+      </tr>
+    </thead>
+
+    <tbody id="dataBody">
+
+      <tr>
+        <td colspan="4">
+          डेटा लोड हो रहा है...
+        </td>
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</div>
+
+<div class="article">
+
+  <h2>🌿 Daily Updates</h2>
+
+  <p>
+    यहां latest information और daily updates
+    एक ही जगह पर उपलब्ध हैं। डेटा नियमित रूप से
+    अपडेट किया जाता है।
+  </p>
+
+</div>
+
+<div class="article">
+
+  <h2>⭐ Latest Information</h2>
+
+  <p>
+    नवीनतम जानकारी यहां नियमित रूप से अपडेट होती रहती है।
+    नई जानकारी देखने के लिए पेज को refresh कर सकते हैं।
+  </p>
+
+</div>
+
+<div class="article">
+
   <h2>🔵 Live Updates</h2>
-  <p>हाल में अपडेट हुई row सबसे ऊपर दिखाई देगी और 10 मिनट तक उसका special highlight बना रहेगा।</p>
+
+  <p>
+    यहां उपलब्ध information समय-समय पर अपडेट होती रहती है।
+    हाल ही में बदली गई जानकारी को विशेष highlight के साथ
+    दिखाया जाता है।
+  </p>
+
 </div>
 
 <footer>
-  <img src="logo.png" class="footer-logo" onerror="this.style.visibility='hidden'">
-  <h3 style="margin-top:8px">ONLINE RESULTS</h3>
-  <p style="margin-top:7px;font-size:13px">Fast Updates • Daily Information</p>
-  <p style="margin-top:7px;font-size:12px">© 2026 All Rights Reserved</p>
+
+  <img src="logo.png" class="footer-logo">
+
+  <h3 style="margin-top:8px;">
+    ONLINE RESULTS
+  </h3>
+
+  <p style="margin-top:7px;font-size:13px;">
+    Fast Updates • Daily Information
+  </p>
+
+  <p style="margin-top:7px;font-size:12px;">
+    © 2026 All Rights Reserved
+  </p>
+
 </footer>
 
 <script>
-const sheetURL="https://docs.google.com/spreadsheets/d/e/2PACX-1vQBZCDddBSSFrPnx8hNWqYZOHJv667cU2FP_ngC4PdsjfINvskiZjvoehO_k7448ExK6qq9MkJoU5Kt/pub?output=csv";
 
-let oldRows={};
-let recentRows={};
-let firstLoad=true;
-let noticeInterval=null;
+/* LIVE CLOCK */
 
 function updateClock(){
-  const d=new Date();
-  const h=String(d.getHours()).padStart(2,"0");
-  const m=String(d.getMinutes()).padStart(2,"0");
-  const s=String(d.getSeconds()).padStart(2,"0");
-  document.getElementById("clock").textContent=`🕒 ${h}:${m}:${s}`;
+
+  const now = new Date();
+
+  const h = String(now.getHours()).padStart(2,"0");
+  const m = String(now.getMinutes()).padStart(2,"0");
+  const s = String(now.getSeconds()).padStart(2,"0");
+
+  document.getElementById("clock").textContent =
+    "🕒 " + h + ":" + m + ":" + s;
 }
+
 updateClock();
 setInterval(updateClock,1000);
 
-function parseCSV(text){
-  const rows=[];let row=[];let value="";let quoted=false;
-  for(let i=0;i<text.length;i++){
-    const c=text[i],next=text[i+1];
-    if(c==='"' && quoted && next==='"'){value+='"';i++}
-    else if(c==='"'){quoted=!quoted}
-    else if(c===',' && !quoted){row.push(value.trim());value=""}
-    else if((c==='\n'||c==='\r')&&!quoted){
-      if(c==='\r'&&next==='\n')i++;
-      row.push(value.trim());value="";
-      if(row.some(x=>x!==""))rows.push(row);
-      row=[];
-    }else value+=c;
-  }
-  if(value!==""||row.length){
-    row.push(value.trim());
-    if(row.some(x=>x!==""))rows.push(row);
-  }
-  return rows;
-}
 
-function esc(v){
-  return String(v??"").replace(/[&<>"']/g,m=>({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
-  }[m]));
-}
+/* GOOGLE SHEET */
+
+const sheetURL =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vQBZCDddBSSFrPnx8hNWqYZOHJv667cU2FP_ngC4PdsjfINvskiZjvoehO_k7448ExK6qq9MkJoU5Kt/pub?output=csv";
+
+
+let oldRows = {};
+let recentRows = {};
+let firstLoad = true;
+
+
+/* LOAD SHEET */
 
 async function loadSheet(){
+
   try{
-    const response=await fetch(sheetURL+"&cache="+Date.now());
-    if(!response.ok)throw new Error("Sheet load failed");
 
-    const text=await response.text();
-    const rows=parseCSV(text);
-    const data=[];
-
-    for(let i=1;i<rows.length;i++){
-      const c=rows[i];
-      if(!c||c.length<2)continue;
-
-      const item={
-        status:c[0]||"WAIT",
-        name:c[1]||"",
-        time:c[2]||"",
-        yesterday:c[3]||"—",
-        today:c[4]||"—"
-      };
-
-      item.key=item.name+"|"+item.time;
-      item.signature=JSON.stringify(item);
-
-      if(!firstLoad &&
-         oldRows[item.key] &&
-         oldRows[item.key]!==item.signature){
-
-        recentRows[item.key]={
-          until:Date.now()+10*60*1000,
-          updatedAt:Date.now()
-        };
-      }
-
-      data.push(item);
-    }
-
-    const now=Date.now();
-
-    Object.keys(recentRows).forEach(key=>{
-      if(recentRows[key].until<=now)delete recentRows[key];
-    });
-
-    data.sort((a,b)=>
-      (recentRows[b.key]?.updatedAt||0)-
-      (recentRows[a.key]?.updatedAt||0)
+    const response = await fetch(
+      sheetURL +
+      "&cache=" +
+      Date.now()
     );
 
-    let html="";
+    if(!response.ok){
+      throw new Error("Sheet loading failed");
+    }
 
-    data.forEach(item=>{
-      const recent=recentRows[item.key] &&
-                   recentRows[item.key].until>now;
+    const text = await response.text();
 
-      const live=String(item.status).trim().toUpperCase()==="LIVE";
+    const rows = parseCSV(text);
 
-      html+=`
-      <tr class="${recent?"updated":""}">
-        <td>
-          <span class="status ${live?"status-live":"status-wait"}">
-            ${esc(item.status)}
-          </span>
-        </td>
+    let data = [];
 
-        <td class="name-cell">
-          <div class="name-line">
-            <img src="logo.png" class="row-logo"
-                 onerror="this.style.visibility='hidden'">
-            <div>
-              <div class="row-name">${esc(item.name)}</div>
-              <div class="row-time">🕒 ${esc(item.time)}</div>
-              ${recent?'<span class="recent">✨ हाल ही में अपडेट</span>':""}
-            </div>
-          </div>
-        </td>
+    for(let i=1;i<rows.length;i++){
 
-        <td class="value">${esc(item.yesterday)}</td>
-        <td class="value">${esc(item.today)}</td>
-      </tr>`;
+      const col = rows[i];
+
+      if(!col || col.length < 2)
+        continue;
+
+      const item = {
+
+        status: col[0] || "WAIT",
+
+        name: col[1] || "",
+
+        time: col[2] || "",
+
+        previous: col[3] || "-",
+
+        today: col[4] || "-"
+
+      };
+
+      const key =
+        item.name + "|" + item.time;
+
+      const signature =
+        JSON.stringify(item);
+
+      const changed =
+        !firstLoad &&
+        oldRows[key] &&
+        oldRows[key] !== signature;
+
+      if(changed){
+
+        recentRows[key] = {
+
+          until:
+            Date.now() + 10 * 60 * 1000,
+
+          updatedAt:
+            Date.now()
+
+        };
+
+      }
+
+      item.key = key;
+      item.signature = signature;
+
+      data.push(item);
+
+    }
+
+
+    /* पुराने 10 मिनट वाले highlights हटाओ */
+
+    const now = Date.now();
+
+    Object.keys(recentRows).forEach(key => {
+
+      if(recentRows[key].until <= now){
+        delete recentRows[key];
+      }
+
     });
 
-    document.getElementById("dataBody").innerHTML=html||
-      `<tr><td colspan="4">अभी कोई डेटा उपलब्ध नहीं है</td></tr>`;
 
-    oldRows={};
-    data.forEach(item=>oldRows[item.key]=item.signature);
+    /* हाल में update हुई row सबसे ऊपर */
 
-    if(!firstLoad && Object.keys(recentRows).length)showNotice();
-    firstLoad=false;
+    data.sort((a,b) => {
+
+      const A = recentRows[a.key];
+      const B = recentRows[b.key];
+
+      const aRecent =
+        A && A.until > now;
+
+      const bRecent =
+        B && B.until > now;
+
+      if(aRecent && bRecent){
+
+        return B.updatedAt - A.updatedAt;
+
+      }
+
+      if(aRecent) return -1;
+
+      if(bRecent) return 1;
+
+      return 0;
+
+    });
+
+
+    let html = "";
+
+
+    data.forEach(item => {
+
+      const status =
+        String(item.status)
+        .trim()
+        .toUpperCase();
+
+      const isLive =
+        status === "LIVE";
+
+      const recent =
+        recentRows[item.key] &&
+        recentRows[item.key].until > Date.now();
+
+
+      html += `
+
+      <tr class="${
+        recent ? "updated-row" : ""
+      }">
+
+        <td>
+
+          <span class="status ${
+            isLive
+            ? "live-status"
+            : "wait-status"
+          }">
+
+            ${escapeHTML(item.status)}
+
+          </span>
+
+        </td>
+
+
+        <td class="name">
+
+          <img
+            src="logo.png"
+            class="row-logo"
+            onerror="this.style.display='none'"
+          >
+
+          <span class="name-text">
+
+            ${escapeHTML(item.name)}
+
+            <div class="time">
+              🕒 ${escapeHTML(item.time)}
+            </div>
+
+          </span>
+
+        </td>
+
+
+        <td>
+          ${escapeHTML(item.previous)}
+        </td>
+
+
+        <td>
+
+          ${
+            recent
+            ? "✨ "
+            : ""
+          }
+
+          ${escapeHTML(item.today)}
+
+        </td>
+
+      </tr>
+
+      `;
+
+    });
+
+
+    document.getElementById("dataBody").innerHTML =
+      html ||
+
+      `
+      <tr>
+        <td colspan="4">
+          कोई डेटा उपलब्ध नहीं है
+        </td>
+      </tr>
+      `;
+
+
+    /* CURRENT DATA SAVE */
+
+    oldRows = {};
+
+    data.forEach(item => {
+
+      oldRows[item.key] =
+        item.signature;
+
+    });
+
+
+    if(!firstLoad){
+
+      if(Object.keys(recentRows).length > 0){
+        showUpdate();
+      }
+
+    }
+
+    firstLoad = false;
+
 
   }catch(error){
+
     console.log(error);
-    document.getElementById("dataBody").innerHTML=
-      `<tr><td colspan="4">⚠️ डेटा लोड नहीं हो पाया</td></tr>`;
+
+    document.getElementById("dataBody").innerHTML = `
+
+      <tr>
+        <td colspan="4">
+          ⚠️ डेटा लोड नहीं हो पाया
+        </td>
+      </tr>
+
+    `;
+
   }
+
 }
 
-function showNotice(){
-  const box=document.getElementById("notice");
-  const timer=document.getElementById("noticeTimer");
-  box.style.display="block";
 
-  clearInterval(noticeInterval);
-  const end=Date.now()+10*60*1000;
+/* CSV PARSER */
+
+function parseCSV(text){
+
+  const rows = [];
+
+  let row = [];
+  let value = "";
+  let quoted = false;
+
+
+  for(
+    let i=0;
+    i<text.length;
+    i++
+  ){
+
+    const c = text[i];
+    const next = text[i+1];
+
+
+    if(
+      c === '"' &&
+      quoted &&
+      next === '"'
+    ){
+
+      value += '"';
+      i++;
+
+    }
+
+    else if(c === '"'){
+
+      quoted = !quoted;
+
+    }
+
+    else if(
+      c === "," &&
+      !quoted
+    ){
+
+      row.push(value.trim());
+      value = "";
+
+    }
+
+    else if(
+      (c === "\n" || c === "\r") &&
+      !quoted
+    ){
+
+      if(
+        c === "\r" &&
+        next === "\n"
+      ){
+        i++;
+      }
+
+      row.push(value.trim());
+
+      if(
+        row.some(x => x !== "")
+      ){
+        rows.push(row);
+      }
+
+      row = [];
+      value = "";
+
+    }
+
+    else{
+
+      value += c;
+
+    }
+
+  }
+
+
+  if(
+    value !== "" ||
+    row.length
+  ){
+
+    row.push(value.trim());
+
+    if(
+      row.some(x => x !== "")
+    ){
+      rows.push(row);
+    }
+
+  }
+
+
+  return rows;
+
+}
+
+
+/* SAFE HTML */
+
+function escapeHTML(text){
+
+  return String(text)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* 10 MINUTE UPDATE MESSAGE */
+
+let updateInterval = null;
+
+function showUpdate(){
+
+  const box =
+    document.getElementById("updateBox");
+
+  const timer =
+    document.getElementById("updateTimer");
+
+  box.style.display = "block";
+
+
+  if(updateInterval){
+    clearInterval(updateInterval);
+  }
+
+
+  const end =
+    Date.now() + 10 * 60 * 1000;
+
 
   function tick(){
-    const left=Math.max(0,end-Date.now());
-    const min=Math.floor(left/60000);
-    const sec=Math.floor((left%60000)/1000);
 
-    timer.textContent=
-      "✨ Recent Update • "+
-      String(min).padStart(2,"0")+":"+
-      String(sec).padStart(2,"0");
+    const remaining =
+      Math.max(
+        0,
+        end - Date.now()
+      );
 
-    if(left<=0){
-      box.style.display="none";
-      clearInterval(noticeInterval);
+
+    const minutes =
+      Math.floor(
+        remaining / 60000
+      );
+
+
+    const seconds =
+      Math.floor(
+        (remaining % 60000) / 1000
+      );
+
+
+    timer.textContent =
+      "✨ हालिया अपडेट • " +
+      String(minutes).padStart(2,"0") +
+      ":" +
+      String(seconds).padStart(2,"0");
+
+
+    if(remaining <= 0){
+
+      box.style.display = "none";
+
+      clearInterval(updateInterval);
+
     }
+
   }
+
+
   tick();
-  noticeInterval=setInterval(tick,1000);
+
+  updateInterval =
+    setInterval(tick,1000);
+
 }
 
+
+/* START */
+
 loadSheet();
-setInterval(loadSheet,30000);
+
+
+/* हर 60 सेकंड Google Sheet check */
+
+setInterval(
+  loadSheet,
+  60000
+);
+
+
+/* 10 सेकंडl में screen refresh/check */
+e
+setInterval(
+  loadSheet,
+  10000
+);
+
 </script>
 
 </body>

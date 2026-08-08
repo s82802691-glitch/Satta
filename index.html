@@ -19,7 +19,7 @@ body{
   color:#172033;
 }
 
-/* TOP */
+/* HEADER */
 .top{
   background:linear-gradient(135deg,#dff2ff,#ffffff);
   padding:22px 14px 25px;
@@ -41,7 +41,6 @@ body{
   margin:10px 0;
   color:#145a86;
   font-size:27px;
-  letter-spacing:.5px;
 }
 
 .clock{
@@ -54,7 +53,7 @@ body{
   box-shadow:0 3px 12px rgba(0,100,160,.12);
 }
 
-/* LIVE */
+/* LIVE BAR */
 .live{
   margin:14px 12px;
   padding:12px;
@@ -91,14 +90,14 @@ body{
   100%{transform:translateX(-100%)}
 }
 
-/* UPDATE MESSAGE */
+/* RECENT UPDATE MESSAGE */
 .update{
   display:none;
   margin:12px;
   padding:12px;
   text-align:center;
   border-radius:12px;
-  background:#ffffff;
+  background:#fff;
   color:#17658e;
   font-weight:bold;
   box-shadow:0 0 18px rgba(45,170,230,.35);
@@ -148,19 +147,18 @@ tr:nth-child(even){
   background:#fcfdff;
 }
 
-/* UPDATED ROW */
+/* RECENTLY UPDATED ROW */
 .updated-row{
-  animation:recentGlow 1.2s infinite alternate;
   background:#e9f7ff !important;
-  position:relative;
+  animation:recentGlow 1s infinite alternate;
 }
 
 @keyframes recentGlow{
   from{
-    box-shadow:inset 0 0 0 rgba(50,170,230,0);
+    box-shadow:inset 0 0 3px rgba(50,170,230,.15);
   }
   to{
-    box-shadow:inset 0 0 18px rgba(50,170,230,.30);
+    box-shadow:inset 0 0 22px rgba(50,170,230,.45);
   }
 }
 
@@ -271,7 +269,6 @@ footer{
     width:28px;
     height:28px;
   }
-
 }
 </style>
 </head>
@@ -291,30 +288,26 @@ footer{
 
 </div>
 
-
-<!-- LIVE BAR -->
+<!-- LIVE -->
 <div class="live">
   🔵 LIVE • FAST • LATEST UPDATES
 </div>
 
-
-<!-- MOVING ANNOUNCEMENT -->
+<!-- MOVING BAR -->
 <div class="ticker">
   <div class="ticker-text">
     📢 ONLINE RESULTS • LATEST INFORMATION • DAILY UPDATES • ONLINE RESULTS
   </div>
 </div>
 
-
-<!-- UPDATE NOTIFICATION -->
+<!-- UPDATE MESSAGE -->
 <div class="update" id="updateBox">
   ✨ NEW UPDATE AVAILABLE ✨
   <br>
   <small id="updateTimer"></small>
 </div>
 
-
-<!-- DATA TABLE -->
+<!-- DATA -->
 <div class="table-box">
 
   <div class="table-title">
@@ -346,8 +339,8 @@ footer{
 
 </div>
 
-
 <!-- INFORMATION -->
+
 <div class="article">
 
   <h2>🌿 Daily Updates</h2>
@@ -360,7 +353,6 @@ footer{
 
 </div>
 
-
 <div class="article">
 
   <h2>⭐ Latest Information</h2>
@@ -371,7 +363,6 @@ footer{
   </p>
 
 </div>
-
 
 <div class="article">
 
@@ -385,8 +376,8 @@ footer{
 
 </div>
 
-
 <!-- FOOTER -->
+
 <footer>
 
   <img src="logo.png" class="footer-logo">
@@ -405,7 +396,6 @@ footer{
 
 </footer>
 
-
 <script>
 
 /* =========================
@@ -416,145 +406,128 @@ function updateClock(){
 
   const now = new Date();
 
-  const h =
-    String(now.getHours()).padStart(2,"0");
+  const h = String(now.getHours()).padStart(2,"0");
+  const m = String(now.getMinutes()).padStart(2,"0");
+  const s = String(now.getSeconds()).padStart(2,"0");
 
-  const m =
-    String(now.getMinutes()).padStart(2,"0");
-
-  const s =
-    String(now.getSeconds()).padStart(2,"0");
-
-  document.getElementById("clock")
-    .textContent =
+  document.getElementById("clock").textContent =
     "🕒 " + h + ":" + m + ":" + s;
 }
 
 updateClock();
-
 setInterval(updateClock,1000);
 
 
 /* =========================
-   GOOGLE SHEET
+   GOOGLE SHEET CSV
+   YOUR LINK IS ALREADY HERE
 ========================= */
 
 const sheetURL =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vQBZCDddBSSFrPnx8hNWqYZOHJv667cU2FP_ngC4PdsjfINvskiZjvoehO_k7448ExK6qq9MkJoU5Kt/pub?output=csv";
 
 
+/* पुराने data को याद रखने के लिए */
 let oldRows = {};
 
+
+/* हर updated row के लिए
+   10 minute timer */
+let recentRows = {};
+
+
+/* पहली loading पर highlight नहीं */
 let firstLoad = true;
 
 
 /* =========================
-   LOAD DATA
+   LOAD SHEET
 ========================= */
 
 async function loadSheet(){
 
-  if(
-    sheetURL ===
-    "https://docs.google.com/spreadsheets/d/e/2PACX-1vQBZCDddBSSFrPnx8hNWqYZOHJv667cU2FP_ngC4PdsjfINvskiZjvoehO_k7448ExK6qq9MkJoU5Kt/pub?output=csv"
-  ){
-
-    document.getElementById(
-      "dataBody"
-    ).innerHTML = `
-      <tr>
-        <td colspan="4">
-          https://docs.google.com/spreadsheets/d/e/2PACX-1vQBZCDddBSSFrPnx8hNWqYZOHJv667cU2FP_ngC4PdsjfINvskiZjvoehO_k7448ExK6qq9MkJoU5Kt/pub?output=csv
-        </td>
-      </tr>
-    `;
-
-    return;
-  }
-
-
   try{
 
-    const response =
-      await fetch(
-        sheetURL +
-        "&cache=" +
-        Date.now()
-      );
+    const response = await fetch(
+      sheetURL +
+      "&cache=" +
+      Date.now()
+    );
 
+    if(!response.ok){
+      throw new Error("Sheet loading failed");
+    }
 
-    if(!response.ok)
-      throw new Error(
-        "Sheet loading failed"
-      );
+    const text = await response.text();
 
-
-    const text =
-      await response.text();
-
-
-    const rows =
-      parseCSV(text);
-
+    const rows = parseCSV(text);
 
     let data = [];
 
-
-    for(
-      let i=1;
-      i<rows.length;
-      i++
-    ){
+    for(let i=1;i<rows.length;i++){
 
       const col = rows[i];
 
-
-      if(
-        !col ||
-        col.length < 2
-      ) continue;
-
+      if(!col || col.length < 2)
+        continue;
 
       const item = {
 
-        status:
-          col[0] || "WAITING",
+        status: col[0] || "WAIT",
 
-        name:
-          col[1] || "",
+        name: col[1] || "",
 
-        time:
-          col[2] || "",
+        time: col[2] || "",
 
-        previous:
-          col[3] || "-",
+        previous: col[3] || "-",
 
-        today:
-          col[4] || "-"
+        today: col[4] || "-"
 
       };
 
-
+      /*
+        Row की पहचान
+      */
       const key =
-        item.name +
-        "|" +
-        item.time;
+        item.name + "|" + item.time;
 
 
       const signature =
         JSON.stringify(item);
 
 
-      item.changed =
+      /*
+        अगर पुराना data मौजूद है
+        और value बदल गई है
+      */
+      const changed =
+        !firstLoad &&
         oldRows[key] &&
         oldRows[key] !== signature;
 
 
+      /*
+        Update होने पर 10 मिनट तक
+        इस row को recent रखो
+      */
+      if(changed){
+
+        recentRows[key] = {
+
+          until:
+            Date.now() +
+            (10 * 60 * 1000),
+
+          updatedAt:
+            Date.now()
+
+        };
+
+      }
+
+
       item.key = key;
-
-      item.signature =
-        signature;
-
+      item.signature = signature;
 
       data.push(item);
 
@@ -562,122 +535,158 @@ async function loadSheet(){
 
 
     /*
-      RECENTLY UPDATED
-      ROWS FIRST
+      Expired 10 minute rows हटाओ
     */
 
-    data.sort(
-      (a,b) =>
-        Number(b.changed) -
-        Number(a.changed)
-    );
+    const now = Date.now();
+
+    Object.keys(recentRows).forEach(key => {
+
+      if(
+        recentRows[key].until <= now
+      ){
+
+        delete recentRows[key];
+
+      }
+
+    });
+
+
+    /*
+      Recent updated rows सबसे ऊपर
+    */
+
+    data.sort((a,b) => {
+
+      const aRecent =
+        recentRows[a.key];
+
+      const bRecent =
+        recentRows[b.key];
+
+
+      const aActive =
+        aRecent &&
+        aRecent.until > now;
+
+
+      const bActive =
+        bRecent &&
+        bRecent.until > now;
+
+
+      if(aActive && bActive){
+
+        return (
+          bRecent.updatedAt -
+          aRecent.updatedAt
+        );
+
+      }
+
+      if(aActive) return -1;
+
+      if(bActive) return 1;
+
+      return 0;
+
+    });
 
 
     let html = "";
 
 
-    data.forEach(
-      (item) => {
+    data.forEach(item => {
 
-        const status =
-          String(
-            item.status
-          ).toUpperCase();
-
-
-        const isLive =
-          status === "LIVE";
+      const status =
+        String(item.status)
+        .trim()
+        .toUpperCase();
 
 
-        html += `
-
-        <tr
-          class="${item.changed ? "updated-row" : ""}"
-        >
-
-          <td>
-
-            <span
-              class="status ${
-                isLive
-                ? "live-status"
-                : "wait-status"
-              }"
-            >
-
-              ${escapeHTML(
-                item.status
-              )}
-
-            </span>
-
-          </td>
+      const isLive =
+        status === "LIVE";
 
 
-          <td class="name">
-
-            <img
-              src="logo.png"
-              class="row-logo"
-            >
-
-            <span
-              class="name-text"
-            >
-
-              ${escapeHTML(
-                item.name
-              )}
-
-              <div class="time">
-
-                🕒
-                ${escapeHTML(
-                  item.time
-                )}
-
-              </div>
-
-            </span>
-
-          </td>
+      const recent =
+        recentRows[item.key] &&
+        recentRows[item.key].until > Date.now();
 
 
-          <td>
+      html += `
 
-            ${escapeHTML(
-              item.previous
-            )}
+      <tr class="${
+        recent ? "updated-row" : ""
+      }">
 
-          </td>
+        <td>
 
+          <span class="status ${
+            isLive
+            ? "live-status"
+            : "wait-status"
+          }">
 
-          <td>
+            ${escapeHTML(item.status)}
 
-            ${
-              item.changed
-              ? "✨ "
-              : ""
-            }
+          </span>
 
-            ${escapeHTML(
-              item.today
-            )}
-
-          </td>
-
-        </tr>
-
-        `;
-
-      }
-    );
+        </td>
 
 
-    document.getElementById(
-      "dataBody"
-    ).innerHTML =
+        <td class="name">
+
+          <img
+            src="logo.png"
+            class="row-logo"
+            onerror="this.style.display='none'"
+          >
+
+          <span class="name-text">
+
+            ${escapeHTML(item.name)}
+
+            <div class="time">
+
+              🕒 ${escapeHTML(item.time)}
+
+            </div>
+
+          </span>
+
+        </td>
+
+
+        <td>
+
+          ${escapeHTML(item.previous)}
+
+        </td>
+
+
+        <td>
+
+          ${
+            recent
+            ? "✨ "
+            : ""
+          }
+
+          ${escapeHTML(item.today)}
+
+        </td>
+
+      </tr>
+
+      `;
+
+    });
+
+
+    document.getElementById("dataBody").innerHTML =
       html ||
+
       `
       <tr>
         <td colspan="4">
@@ -687,25 +696,34 @@ async function loadSheet(){
       `;
 
 
-    /* SAVE CURRENT DATA */
+    /*
+      Current data save
+    */
 
     oldRows = {};
 
-    data.forEach(
-      item => {
+    data.forEach(item => {
 
-        oldRows[
-          item.key
-        ] =
-          item.signature;
+      oldRows[item.key] =
+        item.signature;
 
-      }
-    );
+    });
 
+
+    /*
+      Update message
+    */
 
     if(!firstLoad){
 
-      showUpdate();
+      const hasRecent =
+        Object.keys(recentRows).length > 0;
+
+      if(hasRecent){
+
+        showUpdate();
+
+      }
 
     }
 
@@ -717,14 +735,14 @@ async function loadSheet(){
 
     console.log(error);
 
-    document.getElementById(
-      "dataBody"
-    ).innerHTML = `
+    document.getElementById("dataBody").innerHTML = `
+
       <tr>
         <td colspan="4">
           ⚠️ Data load नहीं हो पाया
         </td>
       </tr>
+
     `;
 
   }
@@ -738,13 +756,13 @@ async function loadSheet(){
 
 function parseCSV(text){
 
-  const rows=[];
+  const rows = [];
 
-  let row=[];
+  let row = [];
 
-  let value="";
+  let value = "";
 
-  let quoted=false;
+  let quoted = false;
 
 
   for(
@@ -753,9 +771,9 @@ function parseCSV(text){
     i++
   ){
 
-    const c=text[i];
+    const c = text[i];
 
-    const next=text[i+1];
+    const next = text[i+1];
 
 
     if(
@@ -770,33 +788,25 @@ function parseCSV(text){
 
     }
 
-    else if(
-      c === '"'
-    ){
+    else if(c === '"'){
 
-      quoted =
-        !quoted;
+      quoted = !quoted;
 
     }
 
     else if(
-      c === ',' &&
+      c === "," &&
       !quoted
     ){
 
-      row.push(
-        value.trim()
-      );
+      row.push(value.trim());
 
-      value="";
+      value = "";
 
     }
 
     else if(
-      (
-        c === "\n" ||
-        c === "\r"
-      ) &&
+      (c === "\n" || c === "\r") &&
       !quoted
     ){
 
@@ -809,10 +819,9 @@ function parseCSV(text){
 
       }
 
+      row.push(value.trim());
 
-      row.push(
-        value.trim()
-      );
+      value = "";
 
 
       if(
@@ -825,10 +834,7 @@ function parseCSV(text){
 
       }
 
-
-      row=[];
-
-      value="";
+      row = [];
 
     }
 
@@ -846,10 +852,7 @@ function parseCSV(text){
     row.length
   ){
 
-    row.push(
-      value.trim()
-    );
-
+    row.push(value.trim());
 
     if(
       row.some(
@@ -877,111 +880,93 @@ function escapeHTML(text){
 
   return String(text)
 
-    .replace(
-      /&/g,
-      "&amp;"
-    )
+    .replace(/&/g,"&amp;")
 
-    .replace(
-      /</g,
-      "&lt;"
-    )
+    .replace(/</g,"&lt;")
 
-    .replace(
-      />/g,
-      "&gt;"
-    )
+    .replace(/>/g,"&gt;")
 
-    .replace(
-      /"/g,
-      "&quot;"
-    )
+    .replace(/"/g,"&quot;")
 
-    .replace(
-      /'/g,
-      "&#039;"
-    );
+    .replace(/'/g,"&#039;");
 
 }
 
 
 /* =========================
-   10 MINUTE UPDATE
+   UPDATE NOTIFICATION
 ========================= */
+
+let updateInterval = null;
+
 
 function showUpdate(){
 
   const box =
-    document.getElementById(
-      "updateBox"
-    );
+    document.getElementById("updateBox");
 
   const timer =
-    document.getElementById(
-      "updateTimer"
-    );
+    document.getElementById("updateTimer");
 
 
-  box.style.display =
-    "block";
+  box.style.display = "block";
+
+
+  if(updateInterval){
+
+    clearInterval(updateInterval);
+
+  }
 
 
   const end =
     Date.now() +
-    10 * 60 * 1000;
+    (10 * 60 * 1000);
 
 
-  const interval =
-    setInterval(
-      function(){
+  function tick(){
 
-        const remaining =
-          Math.max(
-            0,
-            end - Date.now()
-          );
+    const remaining =
+      Math.max(
+        0,
+        end - Date.now()
+      );
 
 
-        const minutes =
-          Math.floor(
-            remaining /
-            60000
-          );
+    const minutes =
+      Math.floor(
+        remaining / 60000
+      );
 
 
-        const seconds =
-          Math.floor(
-            (remaining %
-            60000) /
-            1000
-          );
+    const seconds =
+      Math.floor(
+        (remaining % 60000) / 1000
+      );
 
 
-        timer.textContent =
-          "✨ Recent Update • " +
-          String(minutes)
-            .padStart(2,"0") +
-          ":" +
-          String(seconds)
-            .padStart(2,"0");
+    timer.textContent =
+      "✨ Recent Update • " +
+      String(minutes).padStart(2,"0") +
+      ":" +
+      String(seconds).padStart(2,"0");
 
 
-        if(
-          remaining <= 0
-        ){
+    if(remaining <= 0){
 
-          box.style.display =
-            "none";
+      box.style.display = "none";
 
-          clearInterval(
-            interval
-          );
+      clearInterval(updateInterval);
 
-        }
+    }
 
-      },
-      1000
-    );
+  }
+
+
+  tick();
+
+  updateInterval =
+    setInterval(tick,1000);
 
 }
 
@@ -994,12 +979,24 @@ loadSheet();
 
 
 /*
-  CHECK EVERY 60 SECONDS
+  Google Sheet को हर 60 सेकंड
+  check करेगा
 */
 
 setInterval(
   loadSheet,
   60000
+);
+
+
+/*
+  10 minute highlight खत्म होने के बाद
+  screen को automatically refresh data
+*/
+
+setInterval(
+  loadSheet,
+  10000
 );
 
 </script>

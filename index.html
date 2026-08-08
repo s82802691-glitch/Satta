@@ -187,8 +187,19 @@ line-height:24px;
 
 <script>
 
-const sheetURL="https://docs.google.com/spreadsheets/d/e/2PACX-1vQBZCDddBSSFrPnx8hNWqYZOHJv667cU2FP_ngC4PdsjfINvskiZjvoehO_k7448ExK6qq9MkJoU5Kt/pubhtml";
+<div style="width:100%; max-width:1000px; margin:20px auto; background:#fff; padding:10px; border-radius:15px; box-shadow:0 4px 15px rgba(0,0,0,.15); overflow:hidden;">
 
+  <h2 style="text-align:center; margin:10px 0 15px; font-family:Arial;">
+    📊 Live Sheet
+  </h2>
+
+  <iframe
+    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQBZCDddBSSFrPnx8hNWqYZOHJv667cU2FP_ngC4PdsjfINvskiZjvoehO_k7448ExK6qq9MkJoU5Kt/pubhtml"
+    style="width:100%; height:600px; border:0; border-radius:10px;"
+    loading="lazy">
+  </iframe>
+
+</div>
 fetch(sheetURL)
 .then(res=>res.text())
 .then(data=>{

@@ -1,342 +1,1008 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="google-site-verification" content="USz9TnR0qYcFFHZdesKrAYKXBZHBXSiloTjuvVVJkiw">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<title>ONLINE KHAIWAL | SUPER FAST RESULT</title>
-
-<meta name="description" content="Online Khaiwal Super Fast Result | Gold Star | Royal Star | Delhi Super Bazar">
+<title>ONLINE RESULTS</title>
 
 <style>
-
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial,sans-serif;
 }
 
 body{
-background:#eef4ff;
+  background:#f7f9fc;
+  color:#172033;
 }
 
+/* TOP */
 .top{
-background:#1565C0;
-color:#fff;
-padding:18px;
-text-align:center;
-border-radius:0 0 20px 20px;
-box-shadow:0 3px 10px rgba(0,0,0,.2);
+  background:linear-gradient(135deg,#dff2ff,#ffffff);
+  padding:22px 14px 25px;
+  text-align:center;
+  border-bottom:1px solid #cfe8f8;
+  box-shadow:0 4px 18px rgba(50,130,180,.12);
+}
+
+.logo{
+  width:68px;
+  height:68px;
+  object-fit:cover;
+  border-radius:50%;
+  border:3px solid #fff;
+  box-shadow:0 4px 15px rgba(0,120,200,.18);
 }
 
 .top h1{
-font-size:28px;
-color:#fff;
-margin-bottom:10px;
-letter-spacing:1px;
+  margin:10px 0;
+  color:#145a86;
+  font-size:27px;
+  letter-spacing:.5px;
 }
 
-.market{
-font-size:15px;
-padding:3px 0;
-font-weight:bold;
+.clock{
+  display:inline-block;
+  padding:8px 18px;
+  border-radius:25px;
+  background:#fff;
+  color:#174b69;
+  font-weight:bold;
+  box-shadow:0 3px 12px rgba(0,100,160,.12);
 }
 
-.phone{
-font-size:30px;
-font-weight:bold;
-color:#FFEB3B;
-margin:12px 0;
-}
-
-.btn{
-display:inline-block;
-padding:10px 18px;
-margin:5px;
-border-radius:25px;
-text-decoration:none;
-font-weight:bold;
-font-size:14px;
-color:#fff;
-transition:.3s;
-}
-
-.whatsapp{
-background:#25D366;
-}
-
-.call{
-background:#1976D2;
-}
-
+/* LIVE */
 .live{
-background:linear-gradient(90deg,#1565C0,#42A5F5);
-color:#fff;
-font-size:18px;
-font-weight:bold;
-text-align:center;
-padding:10px;
-margin:10px;
-border-radius:10px;
+  margin:14px 12px;
+  padding:12px;
+  text-align:center;
+  border-radius:12px;
+  background:#e7f5ff;
+  color:#17658e;
+  font-size:17px;
+  font-weight:bold;
 }
 
-#result{
-max-width:750px;
-margin:auto;
+/* MOVING BAR */
+.ticker{
+  margin:12px;
+  overflow:hidden;
+  white-space:nowrap;
+  background:#fff;
+  border:1px solid #d8edf9;
+  border-radius:12px;
+  box-shadow:0 3px 12px rgba(0,100,160,.08);
 }
 
-.box{
-background:#fff;
-margin:10px;
-padding:12px;
-border-radius:12px;
-box-shadow:0 2px 8px rgba(0,0,0,.15);
-overflow:hidden;
+.ticker-text{
+  display:inline-block;
+  padding:11px 0;
+  padding-left:100%;
+  color:#28627f;
+  font-weight:bold;
+  animation:scrollText 14s linear infinite;
 }
 
+@keyframes scrollText{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-100%)}
+}
+
+/* UPDATE MESSAGE */
+.update{
+  display:none;
+  margin:12px;
+  padding:12px;
+  text-align:center;
+  border-radius:12px;
+  background:#ffffff;
+  color:#17658e;
+  font-weight:bold;
+  box-shadow:0 0 18px rgba(45,170,230,.35);
+}
+
+/* TABLE */
+.table-box{
+  margin:12px;
+  background:#fff;
+  border-radius:17px;
+  overflow:hidden;
+  box-shadow:0 5px 20px rgba(30,90,130,.10);
+}
+
+.table-title{
+  padding:15px;
+  text-align:center;
+  background:linear-gradient(135deg,#dff3ff,#eef9ff);
+  color:#175d82;
+  font-size:21px;
+  font-weight:bold;
+  border-bottom:1px solid #d7edf8;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+th{
+  padding:12px 5px;
+  background:#f0f8fd;
+  color:#28627f;
+  font-size:12px;
+  border-bottom:1px solid #d7eaf4;
+}
+
+td{
+  padding:12px 5px;
+  text-align:center;
+  border-bottom:1px solid #edf1f4;
+  font-size:14px;
+  font-weight:bold;
+}
+
+tr:nth-child(even){
+  background:#fcfdff;
+}
+
+/* UPDATED ROW */
+.updated-row{
+  animation:recentGlow 1.2s infinite alternate;
+  background:#e9f7ff !important;
+  position:relative;
+}
+
+@keyframes recentGlow{
+  from{
+    box-shadow:inset 0 0 0 rgba(50,170,230,0);
+  }
+  to{
+    box-shadow:inset 0 0 18px rgba(50,170,230,.30);
+  }
+}
+
+/* STATUS */
 .status{
-display:inline-block;
-padding:5px 10px;
-font-size:12px;
-font-weight:bold;
-border-radius:6px;
-color:#fff;
-background:#1565C0;
+  display:inline-block;
+  min-width:65px;
+  padding:5px 8px;
+  border-radius:7px;
+  color:#fff;
+  font-size:11px;
 }
 
-.result{
-float:right;
-text-align:right;
+.live-status{
+  background:#16a34a;
 }
 
+.wait-status{
+  background:#171717;
+}
+
+/* NAME */
 .name{
-font-size:18px;
-font-weight:bold;
-margin-top:8px;
-color:#1565C0;
+  text-align:left;
+}
+
+.row-logo{
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  object-fit:cover;
+  vertical-align:middle;
+  margin-right:5px;
+  border:2px solid #b9e3f7;
+}
+
+.name-text{
+  display:inline-block;
+  vertical-align:middle;
 }
 
 .time{
-font-size:13px;
-color:#666;
-margin-top:2px;
+  margin-top:3px;
+  color:#77838c;
+  font-size:11px;
 }
 
-.chart a{
-color:#1565C0;
-font-size:13px;
-font-weight:bold;
-text-decoration:none;
-}
-
+/* ARTICLES */
 .article{
-background:#fff;
-margin:12px;
-padding:15px;
-border-radius:12px;
-box-shadow:0 2px 8px rgba(0,0,0,.12);
+  margin:12px;
+  padding:17px;
+  background:#fff;
+  border-radius:15px;
+  border:1px solid #e3edf3;
+  box-shadow:0 3px 12px rgba(30,90,130,.07);
 }
 
 .article h2{
-color:#1565C0;
-margin-bottom:8px;
+  color:#21678c;
+  margin-bottom:8px;
+  font-size:20px;
 }
 
 .article p{
-font-size:15px;
-line-height:24px;
+  line-height:25px;
+  color:#4e5d68;
 }
 
+/* FOOTER */
+footer{
+  margin-top:20px;
+  padding:24px 15px;
+  text-align:center;
+  color:#31566b;
+  background:#e5f5ff;
+  border-top:1px solid #cfe8f8;
+}
+
+.footer-logo{
+  width:55px;
+  height:55px;
+  border-radius:50%;
+  border:2px solid #fff;
+  object-fit:cover;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+
+  .top h1{
+    font-size:24px;
+  }
+
+  th{
+    font-size:10px;
+  }
+
+  td{
+    font-size:11px;
+    padding:9px 2px;
+  }
+
+  .name{
+    min-width:120px;
+  }
+
+  .row-logo{
+    width:28px;
+    height:28px;
+  }
+
+}
 </style>
+</head>
 
-  </head>
-  <body>
+<body>
 
+<!-- HEADER -->
 <div class="top">
 
-<h1>ONLINE KHAIWAL</h1>
+  <img src="logo.png" class="logo">
 
-<div id="topMarkets"></div>
+  <h1>ONLINE RESULTS</h1>
 
-<p style="margin-top:10px;">🎯 जोड़ी रेट <b>10.....950</b></p>
-
-<p style="margin-top:6px;">⚡ सबसे फास्ट पेमेंट की सुविधा ⚡</p>
-
-<div class="phone">
-📞 9649269875
-</div>
-
-<a class="btn whatsapp" href="https://wa.me/919649269875">
-💬 WhatsApp
-</a>
-
-<a class="btn call" href="tel:9649269875">
-📞 Call Now
-</a>
+  <div class="clock" id="clock">
+    🕒 00:00:00
+  </div>
 
 </div>
 
+
+<!-- LIVE BAR -->
 <div class="live">
-🔵 SATTA KING SUPER FAST RESULTS 🔵
+  🔵 LIVE • FAST • LATEST UPDATES
 </div>
 
-<div id="result"></div>
+
+<!-- MOVING ANNOUNCEMENT -->
+<div class="ticker">
+  <div class="ticker-text">
+    📢 ONLINE RESULTS • LATEST INFORMATION • DAILY UPDATES • ONLINE RESULTS
+  </div>
+</div>
+
+
+<!-- UPDATE NOTIFICATION -->
+<div class="update" id="updateBox">
+  ✨ NEW UPDATE AVAILABLE ✨
+  <br>
+  <small id="updateTimer"></small>
+</div>
+
+
+<!-- DATA TABLE -->
+<div class="table-box">
+
+  <div class="table-title">
+    📊 LIVE DATA
+  </div>
+
+  <table>
+
+    <thead>
+      <tr>
+        <th>STATUS</th>
+        <th>NAME / TIME</th>
+        <th>PREVIOUS</th>
+        <th>TODAY</th>
+      </tr>
+    </thead>
+
+    <tbody id="dataBody">
+
+      <tr>
+        <td colspan="4">
+          Loading data...
+        </td>
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</div>
+
+
+<!-- INFORMATION -->
+<div class="article">
+
+  <h2>🌿 Daily Updates</h2>
+
+  <p>
+    यहां latest information और daily updates
+    एक ही जगह पर उपलब्ध हैं। डेटा नियमित रूप से
+    अपडेट किया जाता है।
+  </p>
+
+</div>
+
+
+<div class="article">
+
+  <h2>⭐ Latest Information</h2>
+
+  <p>
+    नवीनतम जानकारी यहां नियमित रूप से अपडेट होती रहती है।
+    नई जानकारी देखने के लिए पेज को refresh कर सकते हैं।
+  </p>
+
+</div>
+
+
+<div class="article">
+
+  <h2>🔵 Live Updates</h2>
+
+  <p>
+    यहां उपलब्ध information समय-समय पर अपडेट होती रहती है।
+    हाल ही में बदली गई जानकारी को विशेष highlight के साथ
+    दिखाया जाता है।
+  </p>
+
+</div>
+
+
+<!-- FOOTER -->
+<footer>
+
+  <img src="logo.png" class="footer-logo">
+
+  <h3 style="margin-top:8px;">
+    ONLINE RESULTS
+  </h3>
+
+  <p style="margin-top:7px;font-size:13px;">
+    Fast Updates • Daily Information
+  </p>
+
+  <p style="margin-top:7px;font-size:12px;">
+    © 2026 All Rights Reserved
+  </p>
+
+</footer>
+
 
 <script>
 
-<div style="width:100%; max-width:1000px; margin:20px auto; background:#fff; padding:10px; border-radius:15px; box-shadow:0 4px 15px rgba(0,0,0,.15); overflow:hidden;">
+/* =========================
+   LIVE CLOCK
+========================= */
 
-  <h2 style="text-align:center; margin:10px 0 15px; font-family:Arial;">
-    📊 Live Sheet
-  </h2>
+function updateClock(){
 
-  <iframe
-    src="const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQBZCDddBSSFrPnx8hNWqYZOHJv667cU2FP_ngC4PdsjfINvskiZjvoehO_k7448ExK6qq9MkJoU5Kt/pub?output=csv";"
-    style="width:100%; height:600px; border:0; border-radius:10px;"
-    loading="lazy">
-  </iframe>
+  const now = new Date();
 
-</div>
-fetch(sheetURL)
-.then(res=>res.text())
-.then(data=>{
+  const h =
+    String(now.getHours()).padStart(2,"0");
 
-let rows=data.trim().split("\n");
+  const m =
+    String(now.getMinutes()).padStart(2,"0");
 
-let header=rows[0].split(",");
+  const s =
+    String(now.getSeconds()).padStart(2,"0");
 
-let topHTML="";
+  document.getElementById("clock")
+    .textContent =
+    "🕒 " + h + ":" + m + ":" + s;
+}
 
-let resultHTML="";
-  for(let i=1;i<rows.length;i++){
+updateClock();
 
-let col=rows[i].split(",");
+setInterval(updateClock,1000);
 
-topHTML+=`
-<div class="market">
-🔥 ${col[1]} ........ ${col[2]}
-</div>
-`;
 
-let badgeColor=col[0].trim().toUpperCase()=="LIVE"
-?"#1565C0":"#444";
+/* =========================
+   GOOGLE SHEET
+========================= */
 
-resultHTML+=`
+const sheetURL =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vQBZCDddBSSFrPnx8hNWqYZOHJv667cU2FP_ngC4PdsjfINvskiZjvoehO_k7448ExK6qq9MkJoU5Kt/pub?output=csv";
 
-<div class="box">
 
-<div class="status" style="background:${badgeColor}">
-${col[0]}
-</div>
+let oldRows = {};
 
-<div class="result">
+let firstLoad = true;
 
-<div style="
-font-size:12px;
-color:#1565C0;
-font-weight:bold;
-margin-bottom:5px;
-">
 
-${header[3]} &nbsp;&nbsp; ${header[4]}
+/* =========================
+   LOAD DATA
+========================= */
 
-</div>
+async function loadSheet(){
 
-<div style="
-font-size:34px;
-font-weight:bold;
-color:#111;
-">
+  if(
+    sheetURL ===
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vQBZCDddBSSFrPnx8hNWqYZOHJv667cU2FP_ngC4PdsjfINvskiZjvoehO_k7448ExK6qq9MkJoU5Kt/pub?output=csv"
+  ){
 
-${col[3]}
-&nbsp;&nbsp;
-${col[4]}
+    document.getElementById(
+      "dataBody"
+    ).innerHTML = `
+      <tr>
+        <td colspan="4">
+          CSV URL डालें
+        </td>
+      </tr>
+    `;
 
-</div>
+    return;
+  }
 
-</div>
 
-<div class="name">
-${col[1]}
-</div>
+  try{
 
-<div class="time">
-🕒 ${col[2]}
-</div>
+    const response =
+      await fetch(
+        sheetURL +
+        "&cache=" +
+        Date.now()
+      );
 
-<div class="chart">
-<a href="#">
-📊 Record Chart
-</a>
-</div>
 
-<div style="clear:both;"></div>
+    if(!response.ok)
+      throw new Error(
+        "Sheet loading failed"
+      );
 
-</div>
 
-`;
+    const text =
+      await response.text();
+
+
+    const rows =
+      parseCSV(text);
+
+
+    let data = [];
+
+
+    for(
+      let i=1;
+      i<rows.length;
+      i++
+    ){
+
+      const col = rows[i];
+
+
+      if(
+        !col ||
+        col.length < 2
+      ) continue;
+
+
+      const item = {
+
+        status:
+          col[0] || "WAITING",
+
+        name:
+          col[1] || "",
+
+        time:
+          col[2] || "",
+
+        previous:
+          col[3] || "-",
+
+        today:
+          col[4] || "-"
+
+      };
+
+
+      const key =
+        item.name +
+        "|" +
+        item.time;
+
+
+      const signature =
+        JSON.stringify(item);
+
+
+      item.changed =
+        oldRows[key] &&
+        oldRows[key] !== signature;
+
+
+      item.key = key;
+
+      item.signature =
+        signature;
+
+
+      data.push(item);
+
+    }
+
+
+    /*
+      RECENTLY UPDATED
+      ROWS FIRST
+    */
+
+    data.sort(
+      (a,b) =>
+        Number(b.changed) -
+        Number(a.changed)
+    );
+
+
+    let html = "";
+
+
+    data.forEach(
+      (item) => {
+
+        const status =
+          String(
+            item.status
+          ).toUpperCase();
+
+
+        const isLive =
+          status === "LIVE";
+
+
+        html += `
+
+        <tr
+          class="${item.changed ? "updated-row" : ""}"
+        >
+
+          <td>
+
+            <span
+              class="status ${
+                isLive
+                ? "live-status"
+                : "wait-status"
+              }"
+            >
+
+              ${escapeHTML(
+                item.status
+              )}
+
+            </span>
+
+          </td>
+
+
+          <td class="name">
+
+            <img
+              src="logo.png"
+              class="row-logo"
+            >
+
+            <span
+              class="name-text"
+            >
+
+              ${escapeHTML(
+                item.name
+              )}
+
+              <div class="time">
+
+                🕒
+                ${escapeHTML(
+                  item.time
+                )}
+
+              </div>
+
+            </span>
+
+          </td>
+
+
+          <td>
+
+            ${escapeHTML(
+              item.previous
+            )}
+
+          </td>
+
+
+          <td>
+
+            ${
+              item.changed
+              ? "✨ "
+              : ""
+            }
+
+            ${escapeHTML(
+              item.today
+            )}
+
+          </td>
+
+        </tr>
+
+        `;
+
+      }
+    );
+
+
+    document.getElementById(
+      "dataBody"
+    ).innerHTML =
+      html ||
+      `
+      <tr>
+        <td colspan="4">
+          No data available
+        </td>
+      </tr>
+      `;
+
+
+    /* SAVE CURRENT DATA */
+
+    oldRows = {};
+
+    data.forEach(
+      item => {
+
+        oldRows[
+          item.key
+        ] =
+          item.signature;
+
+      }
+    );
+
+
+    if(!firstLoad){
+
+      showUpdate();
+
+    }
+
+
+    firstLoad = false;
+
+
+  }catch(error){
+
+    console.log(error);
+
+    document.getElementById(
+      "dataBody"
+    ).innerHTML = `
+      <tr>
+        <td colspan="4">
+          ⚠️ Data load नहीं हो पाया
+        </td>
+      </tr>
+    `;
+
+  }
 
 }
 
-document.getElementById("topMarkets").innerHTML=topHTML;
 
-document.getElementById("result").innerHTML=resultHTML;
+/* =========================
+   CSV PARSER
+========================= */
 
-});
+function parseCSV(text){
+
+  const rows=[];
+
+  let row=[];
+
+  let value="";
+
+  let quoted=false;
+
+
+  for(
+    let i=0;
+    i<text.length;
+    i++
+  ){
+
+    const c=text[i];
+
+    const next=text[i+1];
+
+
+    if(
+      c === '"' &&
+      quoted &&
+      next === '"'
+    ){
+
+      value += '"';
+
+      i++;
+
+    }
+
+    else if(
+      c === '"'
+    ){
+
+      quoted =
+        !quoted;
+
+    }
+
+    else if(
+      c === ',' &&
+      !quoted
+    ){
+
+      row.push(
+        value.trim()
+      );
+
+      value="";
+
+    }
+
+    else if(
+      (
+        c === "\n" ||
+        c === "\r"
+      ) &&
+      !quoted
+    ){
+
+      if(
+        c === "\r" &&
+        next === "\n"
+      ){
+
+        i++;
+
+      }
+
+
+      row.push(
+        value.trim()
+      );
+
+
+      if(
+        row.some(
+          x => x !== ""
+        )
+      ){
+
+        rows.push(row);
+
+      }
+
+
+      row=[];
+
+      value="";
+
+    }
+
+    else{
+
+      value += c;
+
+    }
+
+  }
+
+
+  if(
+    value !== "" ||
+    row.length
+  ){
+
+    row.push(
+      value.trim()
+    );
+
+
+    if(
+      row.some(
+        x => x !== ""
+      )
+    ){
+
+      rows.push(row);
+
+    }
+
+  }
+
+
+  return rows;
+
+}
+
+
+/* =========================
+   SAFE TEXT
+========================= */
+
+function escapeHTML(text){
+
+  return String(text)
+
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+
+    .replace(
+      /</g,
+      "&lt;"
+    )
+
+    .replace(
+      />/g,
+      "&gt;"
+    )
+
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+
+    .replace(
+      /'/g,
+      "&#039;"
+    );
+
+}
+
+
+/* =========================
+   10 MINUTE UPDATE
+========================= */
+
+function showUpdate(){
+
+  const box =
+    document.getElementById(
+      "updateBox"
+    );
+
+  const timer =
+    document.getElementById(
+      "updateTimer"
+    );
+
+
+  box.style.display =
+    "block";
+
+
+  const end =
+    Date.now() +
+    10 * 60 * 1000;
+
+
+  const interval =
+    setInterval(
+      function(){
+
+        const remaining =
+          Math.max(
+            0,
+            end - Date.now()
+          );
+
+
+        const minutes =
+          Math.floor(
+            remaining /
+            60000
+          );
+
+
+        const seconds =
+          Math.floor(
+            (remaining %
+            60000) /
+            1000
+          );
+
+
+        timer.textContent =
+          "✨ Recent Update • " +
+          String(minutes)
+            .padStart(2,"0") +
+          ":" +
+          String(seconds)
+            .padStart(2,"0");
+
+
+        if(
+          remaining <= 0
+        ){
+
+          box.style.display =
+            "none";
+
+          clearInterval(
+            interval
+          );
+
+        }
+
+      },
+      1000
+    );
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+loadSheet();
+
+
+/*
+  CHECK EVERY 60 SECONDS
+*/
+
+setInterval(
+  loadSheet,
+  60000
+);
 
 </script>
-<div class="article">
-
-<h2>🌟 Royal Star Result Today</h2>
-
-<p>
-Royal Star का रिजल्ट प्रतिदिन अपडेट किया जाता है। यहां आपको Live Result, Old Record Chart और सबसे तेज अपडेट मिलते हैं।
-</p>
-
-</div>
-
-<div class="article">
-
-<h2>⭐ Gold Star Result Today</h2>
-
-<p>
-Gold Star मार्केट का रिजल्ट रोज़ अपडेट किया जाता है। यहां पुराने रिकॉर्ड और लेटेस्ट रिजल्ट एक ही जगह उपलब्ध हैं।
-</p>
-
-</div>
-
-<div class="article">
-
-<h2>🔵 Delhi Super Bazar Result Today</h2>
-
-<p>
-Delhi Super Bazar के Live Result, Old Record Chart और Daily Update सबसे पहले यहां देखें।
-</p>
-
-</div>
-
-<div class="article">
-
-<h2>⚡ Online Khaiwal Super Fast Result</h2>
-
-<p>
-यह वेबसाइट Google Sheet से सीधे डेटा पढ़ती है। जैसे ही Sheet में बदलाव होगा, कुछ समय बाद वेबसाइट पर भी अपडेट दिखाई देगा।
-</p>
-
-</div>
-
-<footer style="background:#1565C0;color:#fff;text-align:center;padding:18px;margin-top:20px;">
-
-<h3>ONLINE KHAIWAL</h3>
-
-<p>© 2026 All Rights Reserved</p>
-
-<p>Fast Result • Fast Payment • Trusted Service</p>
-
-</footer>
 
 </body>
 </html>
